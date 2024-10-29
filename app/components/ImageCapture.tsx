@@ -2,12 +2,25 @@
 
 import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
+import { motion } from "framer-motion";
+import { Camera, Upload, X } from "lucide-react";
 
 interface ImageCaptureProps {
   onImageCapture: (image: string | null) => void;
+  theme: {
+    primary: string;
+    secondary: string;
+    gradient: {
+      from: string;
+      to: string;
+    };
+  };
 }
 
-const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
+const ImageCapture: React.FC<ImageCaptureProps> = ({
+  onImageCapture,
+  theme,
+}) => {
   const [isCamera, setIsCamera] = useState(false);
   const webcamRef = useRef<Webcam>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,37 +45,57 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-4"
+    >
       {isCamera ? (
-        <div className="space-y-4">
-          <Webcam
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-            className="w-full max-w-md mx-auto"
-          />
-          <div className="flex justify-center gap-4">
-            <button
-              onClick={captureImage}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg"
-            >
-              Capture
-            </button>
-            <button
+        <motion.div
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          className="space-y-4"
+        >
+          <div className="relative">
+            <Webcam
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
+            />
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => setIsCamera(false)}
-              className="px-4 py-2 bg-red-500 text-white rounded-lg"
+              className="absolute top-4 right-4 p-2 bg-white/80 rounded-full"
             >
-              Cancel
-            </button>
+              <X className="w-6 h-6 text-gray-700" />
+            </motion.button>
           </div>
-        </div>
+          <div className="flex justify-center gap-4">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={captureImage}
+              className="px-6 py-3 text-white rounded-full font-medium shadow-lg flex items-center gap-2"
+              style={{ backgroundColor: theme.primary }}
+            >
+              <Camera className="w-5 h-5" />
+              Capture
+            </motion.button>
+          </div>
+        </motion.div>
       ) : (
         <div className="flex flex-col items-center gap-4">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsCamera(true)}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+            className="px-6 py-3 text-white rounded-full font-medium shadow-lg flex items-center gap-2"
+            style={{ backgroundColor: theme.primary }}
           >
+            <Camera className="w-5 h-5" />
             Open Camera
-          </button>
+          </motion.button>
           <input
             type="file"
             accept="image/*"
@@ -70,15 +103,23 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
             ref={fileInputRef}
             className="hidden"
           />
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2 bg-purple-500 text-white rounded-lg"
+            className="px-6 py-3 rounded-full font-medium shadow-lg flex items-center gap-2"
+            style={{
+              backgroundColor: "white",
+              color: theme.primary,
+              border: `2px solid ${theme.primary}`,
+            }}
           >
+            <Upload className="w-5 h-5" />
             Upload from Gallery
-          </button>
+          </motion.button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
