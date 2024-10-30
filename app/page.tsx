@@ -37,6 +37,7 @@ export default function Home() {
         throw new Error(data.error || "Failed to analyze image");
       }
       setResult(data.result);
+      // eslint-disable-next-line
     } catch (error: any) {
       setResult(
         `Error: ${
@@ -63,15 +64,14 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen p-8 transition-colors duration-500"
+      className="min-h-screen transition-colors duration-500 flex flex-col items-center justify-center md:-mt-10"
       style={{
         background: `linear-gradient(to bottom, ${activeCategory.theme.gradient.from}, ${activeCategory.theme.gradient.to})`,
       }}
     >
       <Navigation onCategoryChange={handleCategoryChange} />
-
       <motion.div
-        className="max-w-2xl mx-auto space-y-8"
+        className="w-full max-w-2xl mx-auto space-y-8 flex flex-col items-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
@@ -119,7 +119,6 @@ export default function Home() {
             Icon={activeCategory.icon}
           />
         )}
-        {/* // In your page.tsx, update the result section: */}
         {result && !loading && (
           <motion.div
             className="space-y-4"

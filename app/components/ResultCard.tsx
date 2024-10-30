@@ -31,6 +31,7 @@ const extractInformation = (text: string) => {
     try {
       const plantData = JSON.parse(jsonString);
       return plantData;
+      // eslint-disable-next-line
     } catch (error) {
       return null;
     }

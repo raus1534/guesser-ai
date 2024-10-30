@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
     const result = await generationResult.response.text();
 
     return NextResponse.json({ result });
+    // eslint-disable-next-line
   } catch (error: any) {
     return NextResponse.json(
       { error: error.message || "Failed to analyze image" },

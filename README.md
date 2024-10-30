@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Guesser
+
+This is an AI-based image guessing app that allows users to upload or capture images, and the app attempts to guess the content of the image. The app utilizes [Google’s Gemini API](https://ai.google.dev/gemini-api) to analyze images and displays results with animations and interactive elements.
+
+## Features
+
+- Provides AI-powered guesses based on the uploaded or captured image content.
+- Supports image capture directly from the user’s webcam.
+- Animates image analysis with engaging effects.
+- Celebrates correct guesses with confetti animations.
+
+## Technologies Used
+
+- **Next.js**: For server-side rendering and optimized front-end performance.
+- **React**: For building the user interface.
+- **TypeScript**: Ensures type safety across the codebase.
+- **@google/generative-ai**: For image analysis and guessing.
+- **@headlessui/react & @react-spring/web**: Provides accessible UI components and smooth animations.
+- **Framer Motion**: Adds fluid animations to the user experience.
+- **React Webcam**: Enables capturing images directly within the app.
+- **React Confetti**: Celebrates correct guesses with confetti animations.
+- **Tailwind CSS & class-variance-authority**: For styling and customizable design themes.
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/)
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/raus1534/guesser-ai.git
+```
+
+### 2. Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`GOOGLE_API_KEY`
+
+### 3. Run Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
