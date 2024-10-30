@@ -17,6 +17,7 @@ import {
   LinksSectionProps,
   ResultCardProps,
 } from "../types";
+import { useCategory } from "../contexts/CategoryContext";
 
 // Generalized information extraction function
 const extractInformation = (text: string) => {
@@ -28,7 +29,6 @@ const extractInformation = (text: string) => {
 
     // Check if the jsonString is valid JSON
     try {
-      console.log(jsonString, "JSON PATH");
       const plantData = JSON.parse(jsonString);
       return plantData;
     } catch (error) {
@@ -126,17 +126,13 @@ const FooterSection: React.FC<FooterSectionProps> = ({ parsedResult }) => (
   </motion.div>
 );
 
-export const ResultCard: React.FC<ResultCardProps> = ({
-  result,
-  theme,
-  category,
-}) => {
+export const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
+  const { activeCategory } = useCategory();
   useEffect(() => {
     scrollToElement("resultSection");
   }, [result]);
 
   const parsedResult = extractInformation(result);
-  console.log(parsedResult);
 
   // Generate relevant links based on the name
   const generateLinks = () => {
@@ -153,8 +149,8 @@ export const ResultCard: React.FC<ResultCardProps> = ({
         icon: Tag,
       },
       {
-        name: `More ${category} Info`,
-        url: `https://www.google.com/search?q=${searchTerm}+${category}+information`,
+        name: `More ${activeCategory?.name} Info`,
+        url: `https://www.google.com/search?q=${searchTerm}+${activeCategory?.name}+information`,
         icon: ListTree,
       },
     ];
@@ -168,12 +164,15 @@ export const ResultCard: React.FC<ResultCardProps> = ({
         className="bg-white rounded-2xl shadow-xl overflow-hidden"
       >
         {/* Header */}
-        <div className="p-6" style={{ backgroundColor: theme.secondary }}>
+        <div
+          className="p-6"
+          style={{ backgroundColor: activeCategory?.theme.secondary }}
+        >
           <motion.h3
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-2xl font-bold"
-            style={{ color: theme.primary }}
+            style={{ color: activeCategory?.theme.primary }}
           >
             {parsedResult?.Name || ""}
           </motion.h3>
@@ -190,13 +189,13 @@ export const ResultCard: React.FC<ResultCardProps> = ({
                   title={key}
                   value={value.toString()}
                   key={key}
-                  theme={theme}
+                  theme={activeCategory?.theme}
                 />
               );
             })}
 
           {/* External Links */}
-          <LinksSection links={generateLinks()} theme={theme} />
+          <LinksSection links={generateLinks()} theme={activeCategory?.theme} />
         </div>
 
         {/* Footer */}

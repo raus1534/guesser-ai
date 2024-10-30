@@ -6,11 +6,11 @@ import { Navigation } from "@components/Navigation";
 import ImageCapture from "@components/ImageCapture";
 import { LoadingAnalysis } from "@components/LoadingAnalysis";
 import { ResultCard } from "@components/ResultCard";
-import { categories } from "@config/categories";
 import { Category } from "@app/types";
+import { useCategory } from "./contexts/CategoryContext";
 
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState<Category>(categories[0]);
+  const { activeCategory, setActiveCategory } = useCategory();
   const [image, setImage] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -68,10 +68,7 @@ export default function Home() {
         background: `linear-gradient(to bottom, ${activeCategory.theme.gradient.from}, ${activeCategory.theme.gradient.to})`,
       }}
     >
-      <Navigation
-        activeCategory={activeCategory}
-        onCategoryChange={handleCategoryChange}
-      />
+      <Navigation onCategoryChange={handleCategoryChange} />
 
       <motion.div
         className="max-w-2xl mx-auto space-y-8"
@@ -97,10 +94,7 @@ export default function Home() {
             {activeCategory?.name?.toLowerCase() || ""} to identify it
           </p>
         </motion.div>
-        <ImageCapture
-          onImageCapture={handleImageCapture}
-          theme={activeCategory.theme}
-        />
+        <ImageCapture onImageCapture={handleImageCapture} />
         {image && (
           <motion.div
             className="space-y-4"
@@ -135,11 +129,7 @@ export default function Home() {
             <h2 className="text-xl font-semibold text-gray-800">
               Analysis Result:
             </h2>
-            <ResultCard
-              result={result}
-              theme={activeCategory.theme}
-              category={activeCategory?.name}
-            />
+            <ResultCard result={result} />
           </motion.div>
         )}
       </motion.div>

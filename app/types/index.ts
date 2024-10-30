@@ -22,15 +22,6 @@ export type AnalysisResult = {
 
 export interface ResultCardProps {
   result: string;
-  theme: {
-    primary: string;
-    secondary: string;
-    gradient: {
-      from: string;
-      to: string;
-    };
-  };
-  category: string;
 }
 
 // Type for extracted information
@@ -62,7 +53,6 @@ export interface FooterSectionProps {
 }
 
 export interface NavigationProps {
-  activeCategory: Category;
   onCategoryChange: (category: Category) => void;
 }
 
@@ -80,12 +70,4 @@ export interface LoadingAnalysisProps {
 
 export interface ImageCaptureProps {
   onImageCapture: (image: string | null) => void;
-  theme: {
-    primary: string;
-    secondary: string;
-    gradient: {
-      from: string;
-      to: string;
-    };
-  };
 }

@@ -5,11 +5,10 @@ import Webcam from "react-webcam";
 import { motion } from "framer-motion";
 import { Camera, Upload, X } from "lucide-react";
 import { ImageCaptureProps } from "../types";
+import { useCategory } from "../contexts/CategoryContext";
 
-const ImageCapture: React.FC<ImageCaptureProps> = ({
-  onImageCapture,
-  theme,
-}) => {
+const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
+  const { activeCategory } = useCategory();
   const [isCamera, setIsCamera] = useState(false);
   const webcamRef = useRef<Webcam>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -66,7 +65,7 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({
               whileTap={{ scale: 0.95 }}
               onClick={captureImage}
               className="px-6 py-3 text-white rounded-full font-medium shadow-lg flex items-center gap-2"
-              style={{ backgroundColor: theme.primary }}
+              style={{ backgroundColor: activeCategory.theme.primary }}
             >
               <Camera className="w-5 h-5" />
               Capture
@@ -80,7 +79,7 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsCamera(true)}
             className="px-6 py-3 text-white rounded-full font-medium shadow-lg flex items-center gap-2"
-            style={{ backgroundColor: theme.primary }}
+            style={{ backgroundColor: activeCategory.theme.primary }}
           >
             <Camera className="w-5 h-5" />
             Open Camera
@@ -99,8 +98,8 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({
             className="px-6 py-3 rounded-full font-medium shadow-lg flex items-center gap-2"
             style={{
               backgroundColor: "white",
-              color: theme.primary,
-              border: `2px solid ${theme.primary}`,
+              color: activeCategory.theme.primary,
+              border: `2px solid ${activeCategory.theme.primary}`,
             }}
           >
             <Upload className="w-5 h-5" />

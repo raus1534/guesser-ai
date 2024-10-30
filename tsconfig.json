@@ -22,6 +22,7 @@
       "@/*": ["./*"],
       "@app/*": ["./app/*"],
       "@components/*": ["./app/components/*"],
+      "@context/*": ["./app/contexts/*"],
       "@config/*": ["./app/config/*"],
       "@utils/*": ["./app/utils/*"],
     }
