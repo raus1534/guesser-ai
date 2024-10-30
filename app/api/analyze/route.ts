@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     ]);
 
     const result = await generationResult.response.text();
+    console.log(result);
 
     return NextResponse.json({ result });
   } catch (error: any) {

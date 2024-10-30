@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf } from "lucide-react";
 import { LoadingAnalysisProps } from "../types";
 
-export const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({ theme }) => {
+export const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
+  theme,
+  Icon,
+}) => {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
       <motion.div
@@ -23,7 +25,7 @@ export const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({ theme }) => {
             ease: "easeInOut",
           }}
         >
-          <Leaf className="w-12 h-12" style={{ color: theme.primary }} />
+          <Icon className="w-12 h-12" style={{ color: theme.primary }} />
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}

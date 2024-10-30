@@ -67,6 +67,7 @@ export interface NavigationProps {
 }
 
 export interface LoadingAnalysisProps {
+  Icon: LucideIcon;
   theme: {
     primary: string;
     secondary: string;

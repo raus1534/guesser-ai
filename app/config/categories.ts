@@ -14,7 +14,8 @@ export const categories: Category[] = [
       '  "Description": "Bla bla",\n' +
       '  "Care Instructions": "Water once every 2-3 weeks",\n' +
       '  "Interesting Fact": "Known for air-purifying qualities"\n' +
-      "}",
+      "}\n" +
+      'If the image does not depict a plant, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
       primary: "#22c55e",
       secondary: "#dcfce7",
@@ -37,7 +38,8 @@ export const categories: Category[] = [
       '  "Key Features": "Electric, Autopilot",\n' +
       '  "Performance Specs": "0-60 mph in 2.4 seconds",\n' +
       '  "Notable Facts": "First mass-produced electric luxury car"\n' +
-      "}",
+      "}\n" +
+      'If the image does not depict a car, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
       primary: "#3b82f6",
       secondary: "#dbeafe",
@@ -58,7 +60,8 @@ export const categories: Category[] = [
       '  "Interesting Facts": "12th Century",\n' +
       '  "Key Features": "Pointed arches, flying buttresses",\n' +
       '  "Historical Significance": "Represents a major architectural movement"\n' +
-      "}",
+      "}\n" +
+      'If the image does not depict a building, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
       primary: "#8b5cf6",
       secondary: "#ede9fe",
@@ -80,7 +83,8 @@ export const categories: Category[] = [
       '  "Temperament Traits": "Gentle, energetic",\n' +
       '  "Care Requirements": "Daily exercise, regular grooming",\n' +
       '  "Fun Fact": "Great family pets"\n' +
-      "}",
+      "}\n" +
+      'If the image does not depict a pet, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
       primary: "#ec4899",
       secondary: "#fce7f3",
@@ -102,7 +106,8 @@ export const categories: Category[] = [
       '  "Main Ingredients": "Rice noodles, shrimp, tofu",\n' +
       '  "Nutritional Highlights": "High in protein",\n' +
       '  "Cultural Significance": "Popular street food in Thailand"\n' +
-      "}",
+      "}\n" +
+      'If the image does not depict food, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
       primary: "#f59e0b",
       secondary: "#fef3c7",

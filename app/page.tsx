@@ -119,7 +119,12 @@ export default function Home() {
             />
           </motion.div>
         )}
-        {loading && <LoadingAnalysis theme={activeCategory.theme} />}
+        {loading && (
+          <LoadingAnalysis
+            theme={activeCategory.theme}
+            Icon={activeCategory.icon}
+          />
+        )}
         {/* // In your page.tsx, update the result section: */}
         {result && !loading && (
           <motion.div
