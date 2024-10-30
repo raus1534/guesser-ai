@@ -4,18 +4,7 @@ import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { motion } from "framer-motion";
 import { Camera, Upload, X } from "lucide-react";
-
-interface ImageCaptureProps {
-  onImageCapture: (image: string | null) => void;
-  theme: {
-    primary: string;
-    secondary: string;
-    gradient: {
-      from: string;
-      to: string;
-    };
-  };
-}
+import { ImageCaptureProps } from "../types";
 
 const ImageCapture: React.FC<ImageCaptureProps> = ({
   onImageCapture,

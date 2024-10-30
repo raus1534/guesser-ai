@@ -2,12 +2,7 @@
 
 import { motion } from "framer-motion";
 import { categories } from "../config/categories";
-import { Category } from "../types";
-
-interface NavigationProps {
-  activeCategory: Category;
-  onCategoryChange: (category: Category) => void;
-}
+import { NavigationProps } from "../types";
 
 export const Navigation: React.FC<NavigationProps> = ({
   activeCategory,

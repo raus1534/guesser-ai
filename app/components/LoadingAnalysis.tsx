@@ -2,17 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Leaf } from "lucide-react";
-
-interface LoadingAnalysisProps {
-  theme: {
-    primary: string;
-    secondary: string;
-    gradient: {
-      from: string;
-      to: string;
-    };
-  };
-}
+import { LoadingAnalysisProps } from "../types";
 
 export const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({ theme }) => {
   return (

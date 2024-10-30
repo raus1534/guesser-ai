@@ -19,3 +19,72 @@ export type AnalysisResult = {
   result: string;
   error?: string;
 };
+
+export interface ResultCardProps {
+  result: string;
+  theme: {
+    primary: string;
+    secondary: string;
+    gradient: {
+      from: string;
+      to: string;
+    };
+  };
+  category: string;
+}
+
+// Type for extracted information
+export interface ExtractedInfo {
+  [key: string]: string;
+}
+
+export interface InfoSectionProps {
+  title: string;
+  value: string;
+  theme: {
+    primary: string;
+    secondary: string;
+  };
+}
+
+// Helper component for displaying links
+export interface LinksSectionProps {
+  links: { name: string; url: string; icon: React.ElementType }[];
+  theme: {
+    primary: string;
+    secondary: string;
+  };
+}
+
+// Helper component for the footer
+export interface FooterSectionProps {
+  parsedResult: ExtractedInfo;
+}
+
+export interface NavigationProps {
+  activeCategory: Category;
+  onCategoryChange: (category: Category) => void;
+}
+
+export interface LoadingAnalysisProps {
+  theme: {
+    primary: string;
+    secondary: string;
+    gradient: {
+      from: string;
+      to: string;
+    };
+  };
+}
+
+export interface ImageCaptureProps {
+  onImageCapture: (image: string | null) => void;
+  theme: {
+    primary: string;
+    secondary: string;
+    gradient: {
+      from: string;
+      to: string;
+    };
+  };
+}

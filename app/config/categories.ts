@@ -7,7 +7,14 @@ export const categories: Category[] = [
     name: "Plants",
     icon: Flower,
     prompt:
-      "Analyze this plant image and provide: 1. Plant name (common and scientific) 2. Brief description 3. Care instructions 4. Interesting facts",
+      "Analyze this plant image and return the information as an object. The object should include the following keys and values:\n" +
+      "{\n" +
+      '  "Name": "Snake Plant",\n' +
+      '  "Scientific Name": "Sansevieria trifasciata",\n' +
+      '  "Description": "Bla bla",\n' +
+      '  "Care Instructions": "Water once every 2-3 weeks",\n' +
+      '  "Interesting Fact": "Known for air-purifying qualities"\n' +
+      "}",
     theme: {
       primary: "#22c55e",
       secondary: "#dcfce7",
@@ -22,7 +29,15 @@ export const categories: Category[] = [
     name: "Cars",
     icon: Car,
     prompt:
-      "Analyze this car image and provide: 1. Make and model 2. Year range 3. Key features 4. Performance specifications 5. Interesting facts",
+      "Analyze this car image and return the information as an object. The object should include the following keys and values:\n" +
+      "{\n" +
+      '  "Name": "Tesla",\n' +
+      '  "Model": "Model S",\n' +
+      '  "Year": "2021",\n' +
+      '  "Key Features": "Electric, Autopilot",\n' +
+      '  "Performance Specs": "0-60 mph in 2.4 seconds",\n' +
+      '  "Notable Facts": "First mass-produced electric luxury car"\n' +
+      "}",
     theme: {
       primary: "#3b82f6",
       secondary: "#dbeafe",
@@ -37,7 +52,13 @@ export const categories: Category[] = [
     name: "Buildings",
     icon: Building,
     prompt:
-      "Analyze this building/architecture and provide: 1. Style/type 2. Estimated period 3. Architectural features 4. Historical significance",
+      "Analyze this building/architecture image and return the information as an object. The object should include the following keys and values:\n" +
+      "{\n" +
+      '  "Name": "Twin Tower",\n' +
+      '  "Interesting Facts": "12th Century",\n' +
+      '  "Key Features": "Pointed arches, flying buttresses",\n' +
+      '  "Historical Significance": "Represents a major architectural movement"\n' +
+      "}",
     theme: {
       primary: "#8b5cf6",
       secondary: "#ede9fe",
@@ -52,7 +73,14 @@ export const categories: Category[] = [
     name: "Pets",
     icon: Dog,
     prompt:
-      "Analyze this pet/animal and provide: 1. Breed/species 2. Characteristics 3. Temperament 4. Care requirements 5. Interesting facts",
+      "Analyze this pet/animal image and return the information as an object. The object should include the following keys and values:\n" +
+      "{\n" +
+      '  "Name": "Labrador Retriever",\n' +
+      '  "Key Characteristics": "Friendly, loyal",\n' +
+      '  "Temperament Traits": "Gentle, energetic",\n' +
+      '  "Care Requirements": "Daily exercise, regular grooming",\n' +
+      '  "Fun Fact": "Great family pets"\n' +
+      "}",
     theme: {
       primary: "#ec4899",
       secondary: "#fce7f3",
@@ -67,7 +95,14 @@ export const categories: Category[] = [
     name: "Food",
     icon: Bean,
     prompt:
-      "Analyze this food item and provide: 1. Dish name 2. Cuisine type 3. Main ingredients 4. Nutritional highlights 5. Cultural significance",
+      "Analyze this food item and return the information as an object. The object should include the following keys and values:\n" +
+      "{\n" +
+      '  "Name": "Pad Thai",\n' +
+      '  "Cuisine Type": "Thai",\n' +
+      '  "Main Ingredients": "Rice noodles, shrimp, tofu",\n' +
+      '  "Nutritional Highlights": "High in protein",\n' +
+      '  "Cultural Significance": "Popular street food in Thailand"\n' +
+      "}",
     theme: {
       primary: "#f59e0b",
       secondary: "#fef3c7",

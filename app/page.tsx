@@ -38,7 +38,6 @@ export default function Home() {
       }
       setResult(data.result);
     } catch (error: any) {
-      console.error("Error analyzing image:", error);
       setResult(
         `Error: ${
           error.message || "Failed to analyze image. Please try again."
@@ -90,12 +89,12 @@ export default function Home() {
               style: { color: activeCategory.theme.primary },
             })}
             <h1 className="text-4xl font-bold text-gray-800">
-              {activeCategory.name} Identifier
+              {activeCategory?.name || ""} Identifier
             </h1>
           </div>
           <p className="text-gray-600">
-            Upload or take a photo of any {activeCategory.name.toLowerCase()} to
-            identify it
+            Upload or take a photo of any{" "}
+            {activeCategory?.name?.toLowerCase() || ""} to identify it
           </p>
         </motion.div>
         <ImageCapture
@@ -113,7 +112,7 @@ export default function Home() {
             </h2>
             <motion.img
               src={image}
-              alt={`Captured ${activeCategory.name.toLowerCase()}`}
+              alt={`Captured ${activeCategory?.name.toLowerCase() || ""}`}
               className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
@@ -134,7 +133,7 @@ export default function Home() {
             <ResultCard
               result={result}
               theme={activeCategory.theme}
-              category={activeCategory.name}
+              category={activeCategory?.name}
             />
           </motion.div>
         )}
