@@ -50,17 +50,21 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
           className="space-y-4"
         >
           <div className="relative">
-            <Webcam
-              ref={webcamRef}
-              screenshotFormat="image/jpeg"
-              videoConstraints={{
-                facingMode: facingMode,
-              }}
-              className={`w-full max-w-md mx-auto rounded-2xl shadow-lg ${
-                facingMode === "user" ? "transform scale-x-[-1]" : ""
-              }`}
-            />
-
+            <motion.div
+              initial={{ scaleX: 1 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.3 }}
+              className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
+            >
+              <Webcam
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                videoConstraints={{
+                  facingMode: facingMode,
+                }}
+                className="w-full rounded-2xl"
+              />
+            </motion.div>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

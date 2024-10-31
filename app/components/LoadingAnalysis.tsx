@@ -8,7 +8,7 @@ export const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
   Icon,
 }) => {
   return (
-    <div className="fixed inset-0 -top-10 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="fixed inset-0 -top-10 -bottom-10 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
