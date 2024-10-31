@@ -56,8 +56,11 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
               videoConstraints={{
                 facingMode: facingMode,
               }}
-              className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
+              className={`w-full max-w-md mx-auto rounded-2xl shadow-lg ${
+                facingMode === "user" ? "transform scale-x-[-1]" : ""
+              }`}
             />
+
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
