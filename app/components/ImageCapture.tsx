@@ -1,25 +1,26 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { motion } from "framer-motion";
-import { Camera, Upload, X } from "lucide-react";
+import { Camera, Upload, X, SwitchCamera } from "lucide-react";
 import { ImageCaptureProps } from "../types";
 import { useCategory } from "../contexts/CategoryContext";
 
 const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
   const { activeCategory } = useCategory();
   const [isCamera, setIsCamera] = useState(false);
+  const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
   const webcamRef = useRef<Webcam>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const captureImage = () => {
+  const captureImage = useCallback(() => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       onImageCapture(imageSrc);
       setIsCamera(false);
     }
-  };
+  }, [onImageCapture]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -32,11 +33,15 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
     }
   };
 
+  const toggleCameraMode = useCallback(() => {
+    setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-4"
+      className="space-y-4 p-2"
     >
       {isCamera ? (
         <motion.div
@@ -48,6 +53,9 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
             <Webcam
               ref={webcamRef}
               screenshotFormat="image/jpeg"
+              videoConstraints={{
+                facingMode: facingMode,
+              }}
               className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
             />
             <motion.button
@@ -57,6 +65,14 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ onImageCapture }) => {
               className="absolute top-4 right-4 p-2 bg-white/80 rounded-full"
             >
               <X className="w-6 h-6 text-gray-700" />
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleCameraMode}
+              className="absolute top-4 left-4 p-2 bg-white/80 rounded-full"
+            >
+              <SwitchCamera className="w-6 h-6 text-gray-700" />
             </motion.button>
           </div>
           <div className="flex justify-center gap-4">

@@ -80,12 +80,12 @@ export default function Home() {
           initial={{ y: -20 }}
           animate={{ y: 0 }}
         >
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center md:gap-2 gap-1 md:pt-0 pt-2">
             {React.createElement(activeCategory.icon, {
               className: "w-8 h-8 animate-bounce",
               style: { color: activeCategory.theme.primary },
             })}
-            <h1 className="text-4xl font-bold text-gray-800">
+            <h1 className="md:text-4xl text-3xl font-bold text-gray-800">
               {activeCategory?.name || ""} Identifier
             </h1>
           </div>
@@ -97,7 +97,7 @@ export default function Home() {
         <ImageCapture onImageCapture={handleImageCapture} />
         {image && (
           <motion.div
-            className="space-y-4"
+            className="space-y-4 p-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -121,7 +121,7 @@ export default function Home() {
         )}
         {result && !loading && (
           <motion.div
-            className="space-y-4"
+            className="space-y-4 p-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
