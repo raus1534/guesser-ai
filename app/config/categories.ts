@@ -17,10 +17,10 @@ export const categories: Category[] = [
       "}\n" +
       'If the image does not depict a plant, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
-      primary: "#22c55e",
-      secondary: "#dcfce7",
+      primary: "#4caf50", // Green for growth and nature
+      secondary: "#e8f5e9", // Light green for calmness
       gradient: {
-        from: "#f0fdf4",
+        from: "#f1f8e9", // Soft green for tranquility
         to: "#ffffff",
       },
     },
@@ -41,10 +41,10 @@ export const categories: Category[] = [
       "}\n" +
       'If the image does not depict a car, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
-      primary: "#3b82f6",
-      secondary: "#dbeafe",
+      primary: "#1e3a8a", // Deep blue for trust and dependability
+      secondary: "#e0e7ff", // Soft blue for stability
       gradient: {
-        from: "#eff6ff",
+        from: "#e3f2fd", // Light blue for modernity
         to: "#ffffff",
       },
     },
@@ -63,10 +63,10 @@ export const categories: Category[] = [
       "}\n" +
       'If the image does not depict a building, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
-      primary: "#8b5cf6",
-      secondary: "#ede9fe",
+      primary: "#6b7280", // Gray for strength and stability
+      secondary: "#f3f4f6", // Light gray for modernity
       gradient: {
-        from: "#f5f3ff",
+        from: "#f7f9fc", // Soft neutral tones for sophistication
         to: "#ffffff",
       },
     },
@@ -86,10 +86,10 @@ export const categories: Category[] = [
       "}\n" +
       'If the image does not depict a pet, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
-      primary: "#ec4899",
-      secondary: "#fce7f3",
+      primary: "#ff6347", // Warm red-orange for playfulness and affection
+      secondary: "#ffe4e1", // Soft pink for comfort and warmth
       gradient: {
-        from: "#fdf2f8",
+        from: "#fff5f7", // Light warm tone for gentleness
         to: "#ffffff",
       },
     },
@@ -109,10 +109,10 @@ export const categories: Category[] = [
       "}\n" +
       'If the image does not depict food, return an object stating: {"Name":"[Name of Object]","Fault": "This image falls under the wrong category as it depicts a [give name and description of the image]."}',
     theme: {
-      primary: "#f59e0b",
-      secondary: "#fef3c7",
+      primary: "#ffa500", // Orange for appetite stimulation
+      secondary: "#fff5e0", // Light orange for warmth
       gradient: {
-        from: "#fffbeb",
+        from: "#fffaf0", // Soft, creamy tone for deliciousness
         to: "#ffffff",
       },
     },
