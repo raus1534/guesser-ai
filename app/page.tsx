@@ -109,14 +109,14 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen transition-colors duration-500 flex flex-col items-center justify-center md:-mt-10"
+      className="min-h-screen  transition-colors duration-500 flex flex-col items-center justify-center"
       style={{
         background: `linear-gradient(to bottom, ${activeCategory.theme.gradient.from}, ${activeCategory.theme.gradient.to})`,
       }}
     >
       <Navigation onCategoryChange={handleCategoryChange} />
       <motion.div
-        className="w-full max-w-2xl mx-auto space-y-8 flex flex-col items-center"
+        className="w-full max-w-2xl mx-auto space-y-8 flex flex-col items-center py-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
@@ -134,7 +134,7 @@ export default function Home() {
               {activeCategory?.name || ""} Identifier
             </h1>
           </div>
-          <p className="text-gray-600">
+          <p className="text-gray-600 px-5">
             Upload or take a photo of any{" "}
             {activeCategory?.name?.toLowerCase() || ""} to identify it
           </p>
