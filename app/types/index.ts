@@ -24,7 +24,6 @@ export interface ResultCardProps {
   result: string;
 }
 
-// Type for extracted information
 export interface ExtractedInfo {
   [key: string]: string;
 }
@@ -38,7 +37,6 @@ export interface InfoSectionProps {
   };
 }
 
-// Helper component for displaying links
 export interface LinksSectionProps {
   links: { name: string; url: string; icon: React.ElementType }[];
   theme: {
@@ -47,7 +45,6 @@ export interface LinksSectionProps {
   };
 }
 
-// Helper component for the footer
 export interface FooterSectionProps {
   parsedResult: ExtractedInfo;
 }

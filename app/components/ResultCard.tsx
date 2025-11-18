@@ -183,7 +183,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
         <div className="p-6 space-y-6">
           {parsedResult &&
             Object.entries(parsedResult).map(([key, value]) => {
-              if (!value) return null; // Skip empty values
+              if (!value) return null;
               if (key == "Name" || key == "name") return;
               return (
                 <InfoSection

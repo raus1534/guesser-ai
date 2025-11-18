@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "@components/Navigation";
 import ImageCapture from "@components/ImageCapture";
@@ -9,13 +9,57 @@ import { ResultCard } from "@components/ResultCard";
 import { Category } from "@app/types";
 import { useCategory } from "./contexts/CategoryContext";
 
+const DAILY_LIMIT = 10;
+const STORAGE_KEY = "imageAnalysisUsage";
+
 export default function Home() {
   const { activeCategory, setActiveCategory } = useCategory();
   const [image, setImage] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [usageCount, setUsageCount] = useState(0);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      const today = new Date().toDateString();
+      if (parsed.date === today) {
+        setUsageCount(parsed.count);
+      } else {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ date: today, count: 0 })
+        );
+        setUsageCount(0);
+      }
+    } else {
+      const today = new Date().toDateString();
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ date: today, count: 0 })
+      );
+    }
+  }, []);
+
+  const incrementUsage = () => {
+    const today = new Date().toDateString();
+    const newCount = usageCount + 1;
+    setUsageCount(newCount);
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ date: today, count: newCount })
+    );
+  };
 
   const analyzeImage = async (imageData: string) => {
+    if (usageCount >= DAILY_LIMIT) {
+      setResult(
+        `Daily limit reached. You can analyze up to ${DAILY_LIMIT} images per day.`
+      );
+      return;
+    }
+
     try {
       setLoading(true);
       const base64Data = imageData.split(",")[1];
@@ -37,6 +81,7 @@ export default function Home() {
         throw new Error(data.error || "Failed to analyze image");
       }
       setResult(data.result);
+      incrementUsage();
       // eslint-disable-next-line
     } catch (error: any) {
       setResult(
@@ -93,8 +138,19 @@ export default function Home() {
             Upload or take a photo of any{" "}
             {activeCategory?.name?.toLowerCase() || ""} to identify it
           </p>
+          <p className="text-sm text-gray-500">
+            {`You have ${DAILY_LIMIT - usageCount} analyses left today.`}
+          </p>
         </motion.div>
-        <ImageCapture onImageCapture={handleImageCapture} />
+        {usageCount < DAILY_LIMIT ? (
+          <ImageCapture onImageCapture={handleImageCapture} />
+        ) : (
+          <p className="text-red-500 text-center">
+            You have reached your daily limit of {DAILY_LIMIT} analyses. Please
+            come back tomorrow.
+          </p>
+        )}
+
         {image && (
           <motion.div
             className="space-y-4 p-2"

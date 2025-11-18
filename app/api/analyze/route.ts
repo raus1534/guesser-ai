@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const model = googleAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = googleAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const imageBytes = await image.arrayBuffer();
     const generationResult = await model.generateContent([
