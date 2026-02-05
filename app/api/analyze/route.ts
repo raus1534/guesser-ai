@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     if (!image || !prompt) {
       return NextResponse.json(
         { error: "Image and prompt are required" },
-        { status: 400, headers: corsHeaders }
+        { status: 400, headers: corsHeaders },
       );
     }
 
@@ -48,10 +48,11 @@ export async function POST(request: NextRequest) {
     const result = await generationResult.response.text();
 
     return NextResponse.json({ result }, { headers: corsHeaders });
+    // eslint-disable-next-line
   } catch (error: any) {
     return NextResponse.json(
       { error: error.message || "Failed to analyze image" },
-      { status: 500, headers: corsHeaders }
+      { status: 500, headers: corsHeaders },
     );
   }
 }
