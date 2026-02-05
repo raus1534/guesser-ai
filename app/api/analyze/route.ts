@@ -3,6 +3,19 @@ import { NextRequest, NextResponse } from "next/server";
 
 const googleAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const data = await request.formData();
@@ -12,13 +25,16 @@ export async function POST(request: NextRequest) {
     if (!image || !prompt) {
       return NextResponse.json(
         { error: "Image and prompt are required" },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
-    const model = googleAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = googleAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+    });
 
     const imageBytes = await image.arrayBuffer();
+
     const generationResult = await model.generateContent([
       prompt,
       {
@@ -31,12 +47,11 @@ export async function POST(request: NextRequest) {
 
     const result = await generationResult.response.text();
 
-    return NextResponse.json({ result });
-    // eslint-disable-next-line
+    return NextResponse.json({ result }, { headers: corsHeaders });
   } catch (error: any) {
     return NextResponse.json(
       { error: error.message || "Failed to analyze image" },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
